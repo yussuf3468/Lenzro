@@ -38,14 +38,34 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Logo and Info */}
           <div className="lg:col-span-2">
-            <div className="inline-flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-                <Zap className="w-5 h-5 text-white" />
-              </div>
-              <span className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                Lenzro
-              </span>
+            {/* Logo */}
+          <div className="flex items-center">
+            <svg
+              viewBox="0 0 70 1080"
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-20 h-[100px]"
+            >
+              <defs>
+                <linearGradient
+                  id="logoGradient"
+                  x1="0%"
+                  y1="0%"
+                  x2="100%"
+                  y2="0%"
+                >
+                  <stop offset="0%" stopColor="#1e3a8a" />
+                  <stop offset="100%" stopColor="#9333ea" />
+                </linearGradient>
+              </defs>
+              <g fill="url(#logoGradient)">
+                <path d="M395.4,434l-63.4-59.8c-11.6-11.4-27.1-17.7-43.3-17.7H103.7c-34.1,0-61.8,27.7-61.8,61.8v184.4c0,16.6,6.7,32.5,18.5,44.1l63.4,59.8c11.6,11.3,27.1,17.7,43.3,17.7h185.1c34.1,0,61.8-27.7,61.8-61.8v-184.4c0-16.6-6.7-32.5-18.5-44.1h0ZM279.4,647.8c9.8,0,18.4-.8,25.8-2.5s13.7-4.1,18.9-7.4c9.2-5.9,13.9-10.4,20.6-23.8,1.4-2.8,4.7-4,7.6-2.7,2.1,1,3.4,3.1,3.4,5.3s-.1,1.3-.4,2l-18.8,50.6h-130.6c-4.4,0-8-3.6-8-8s.6-3.4,1.6-4.8l87.1-115.2c9.2-12.2.5-29.7-14.8-29.7s-11.9.3-16.8.9c-4.9.6-9.2,1.5-12.9,2.7-7.3,2.4-13.7,6.2-19.1,11.3-4.6,4.3-6.4,6.4-10.5,11.5-1.5,1.9-4.1,2.6-6.4,1.6-2.1-.9-3.3-2.9-3.3-5s.2-1.5.5-2.3l19.4-42.2h125.9c4.5,0,8.1,3.6,8.1,8.1s-.6,3.5-1.6,4.9l-88.9,117.8c-8.4,11.1-.5,27,13.4,27h0Z" />
+              </g>
+            </svg>
+
+            <div className="text-2xl font-bold bg-gradient-to-r from-blue-900 to-purple-600 bg-clip-text text-transparent">
+              Lenzro
             </div>
+          </div>
 
             <p className="text-gray-300 mb-6 leading-relaxed">
               Empowering businesses with innovative digital solutions. From idea to execution, 
