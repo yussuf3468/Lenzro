@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import emailjs from 'emailjs-com';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -7,6 +8,9 @@ const Contact = () => {
     email: '',
     message: ''
   });
+  const [statusMessage, setStatusMessage] = useState<string | null>(null);
+const [isSuccess, setIsSuccess] = useState<boolean | null>(null);
+
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -15,13 +19,36 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle form submission here
-    console.log('Form submitted:', formData);
-    // Reset form
-    setFormData({ name: '', email: '', message: '' });
-  };
+
+const handleSubmit = (e: React.FormEvent) => {
+  e.preventDefault();
+
+  emailjs
+    .send(
+      'service_hxy53bk', // ✅ Your Service ID
+      'template_3syuw6o', // ✅ Your actual EmailJS Template ID
+      {
+        from_name: formData.name,
+        from_email: formData.email,
+        message: formData.message
+      },
+      'OOnn4jog3-e9lbKUw' // ✅ Your EmailJS Public Key (User ID)
+    )
+    .then(
+    (response) => {
+      console.log('SUCCESS!', response.status, response.text);
+      setIsSuccess(true);
+      setStatusMessage('✅ Message sent successfully! We will contact you soon.');
+      setFormData({ name: '', email: '', message: '' });
+    },
+    (err) => {
+      console.error('FAILED...', err);
+      setIsSuccess(false);
+      setStatusMessage('❌ Failed to send message. Please try again later.');
+    }
+  );
+};
+
 
   return (
     <section id="contact" className="py-20 bg-white">
@@ -64,7 +91,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <h4 className="font-semibold text-gray-900">Phone</h4>
-                  <a href="tel:+1234567890" className="text-purple-600 hover:text-purple-700">+1 (234) 567-8900</a>
+                  <a href="tel:+1234567890" className="text-purple-600 hover:text-purple-700">+254 769 484 646</a>
                 </div>
               </div>
 
@@ -74,7 +101,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <h4 className="font-semibold text-gray-900">Office</h4>
-                  <p className="text-gray-600">123 Innovation Drive<br />Tech City, TC 12345</p>
+                  <p className="text-gray-600">12th street Eastleigh<br />Nairobi City, NC 486</p>
                 </div>
               </div>
             </div>
@@ -84,15 +111,11 @@ const Contact = () => {
               <div className="space-y-2 text-gray-600">
                 <div className="flex justify-between">
                   <span>Monday - Friday</span>
-                  <span>9:00 AM - 6:00 PM</span>
+                  <span>8:00 AM - 10:00 PM</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Saturday</span>
-                  <span>10:00 AM - 4:00 PM</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Sunday</span>
-                  <span>Closed</span>
+                  <span>8:00 AM - 4:00 PM</span>
                 </div>
               </div>
             </div>
